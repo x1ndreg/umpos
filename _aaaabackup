@@ -1,0 +1,153 @@
+   foreach ($products as $product) {
+
+                                                    echo '<div class="col-lg-3 col-sm-6 d-flex">';
+                                                    echo '<div class="row"</div>';
+                                                    echo '<div class="productset flex-fill">';
+                                                    echo '<div class="productsetimg">';
+                                                    echo '<img src="assets/img/product/product54.jpg" alt="img">';
+                                                    echo '<h6>Qty: ' . $product['Quant'] . '</h6>';
+                                                    echo '<div class="check-product">';
+                                                    echo '<i class="fa fa-check"></i>';
+                                                    echo '</div>';
+                                                    echo '</div>';
+                                                    echo '<div class="productsetcontent">';
+                                                    echo '<h4>' . $product['productName'] . '</h4>';
+                                                    echo '<h6>' . $product['productPrice'] . '</h6>';
+                                                    echo '</div>';
+                                                    echo '</div>';
+                                                    echo '</div>';
+                                                }
+
+
+
+
+
+
+
+                                                <!-- <div class="order-list">
+                                                        <div class="actionproducts">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="javascript:void(0);" class="deletebg confirm-text"><img src="assets/img/icons/edit.svg" alt="img"></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:void(0);" class="deletebg confirm-text"><img src="assets/img/icons/delete-2.svg" alt="img"></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div> -->
+
+
+
+
+
+                                                    backup add productg sa pos 
+                                                    <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a href="javascript:void(0);" class="btn btn-adds" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                        <i class="fa fa-plus me-2"></i>Add Products
+                                    </a>
+                                    <!-- modal for adding product  -->
+                                    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Set the form action to the PHP script that handles the form submission -->
+                                                    <!-- <div class="mb-3">
+                                                        <Select name="productCode" class="form-control5" id="addedProductCode">
+                                                            <option value="productCode">Product Code</option>
+                                                        </Select>
+                                                    </div> -->
+                                                    <form action="_pos.php" method="POST" enctype="multipart/form-data">
+                                                        <div class="mb-3">
+
+                                                            <label for="productName" class="form-label">Product Name</label>
+                                                            <select class="form-control" id="productName" name="productName">
+                                                                <option value="">Select Product</option>
+                                                                <?php
+                                                                // Assume you have a function to fetch product names from the database
+                                                                $productNames = fetchProductNamesFromDatabase();
+
+                                                                foreach ($productNames as $productName) {
+                                                                    $selected = (isset($product['productName']) && $product['productName'] == $productName) ? 'selected' : '';
+                                                                    echo "<option value=\"$productName\" $selected>$productName</option>";
+                                                                }
+                                                                ?>
+                                                            </select>
+
+                                                            <!-- Product Price -->
+                                                            <label for="productPrice" class="form-label">Product Price</label>
+                                                            <input type="number" class="form-control" id="productPrice" name="productPrice" value="<?= isset($product['productPrice']) ? $product['productPrice'] : ''; ?>">
+
+                                                            <!-- Product Quantity -->
+                                                            <label for="Quant" class="form-label">Product Quantity</label>
+                                                            <input type="number" class="form-control" id="Quant" name="Quant" value="<?= isset($product['productPrice']) ? $product['productPrice'] : ''; ?>">
+
+                                                            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                                            <script>
+                                                                // Function to update product details based on selected product
+                                                                function updateProductDetails() {
+                                                                    var selectedProductName = $("#productName").val();
+
+                                                                    // Make an AJAX request to fetch product details from the server
+                                                                    $.ajax({
+                                                                        url: 'get_product_details.php', // Replace with the actual URL to fetch product details
+                                                                        type: 'GET',
+                                                                        data: {
+                                                                            productName: selectedProductName
+                                                                        },
+                                                                        dataType: 'json',
+                                                                        success: function(data) {
+                                                                            // Update the product price and quantity fields
+                                                                            $("#productPrice").val(data.price || '');
+                                                                            $("#Quant").val(data.quantity || '');
+                                                                        },
+                                                                        error: function() {
+                                                                            console.error('Failed to fetch product details');
+                                                                        }
+                                                                    });
+                                                                }
+                                                                $("#productName").on('change', updateProductDetails);
+                                                            </script>
+                                                            <!-- image for the product and barcode that would be displayed  -->
+
+                                                            <div class="product-image">
+
+                                                            </div>
+                                                            <div class="barcode-image">
+
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- <button type="submit" class="btn btn-custom-primary" id="customSaveProductBtn" name="customSaveProductBtn">Save Product</button> -->
+
+                                                        <button type="submit" class="btn btn-primary" name="submit">Add Product</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                                        <h3 for="scan_student_school_id" class="text-center text-uppercase text-bold">school id</h3>
+                                        <input type="text" name="scannedSchoolId" id="scannedSchoolId" class="form-control form-control-lg text-center text-bold" style="font-size: 20px;" autofocus>
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function() {
+                                                setTimeout(function() {
+                                                    document.getElementById('scannedSchoolId').focus();
+                                                }, 5000); // 5 seconds
+                                            });
+                                        </script>
+                                    </div>

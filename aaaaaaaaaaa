@@ -1,0 +1,219 @@
+<div class="tabs_container">
+                            <div class="tab_content active" data-tab="drinks">
+                                <div class="row">
+                                    <div class="tabs_container">
+                                        <div class="tab_content active" data-tab="drinks">
+
+                                            <div class="row">
+                                                <?php
+                                               
+                                                $products = fetchProductsFromDatabase2();
+
+                                                // Loop through the products and echo HTML content
+                                                foreach ($products as $product) { ?>
+                                                    <div class="col-lg-3 col-sm-6 d-flex">
+                                                        <!-- <div class="row"> -->
+                                                        <div class="productset flex-fill" data-bs-toggle="modal" data-bs-target="#editProductDetails" onclick="loadProductDetails(<?= $product['productId'] ?>)">
+                                                            <div class="productsetimg">
+                                                                <img src="<?= isset($product['productImage']) ? $product['productImage'] : 'assets/img/product/product54.jpg'; ?>" alt="Product Image">
+                                                                <h6>Qty: <?= $product['Quant'] ?> </h6>
+                                                                <div class="check-product">
+                                                                    <i class="fa fa-check"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="productsetcontent">
+                                                                <h4><?= $product['productName'] ?></h4>
+                                                                <h6><span>₱<?= $product['productPrice'] ?></span></h6>
+                                                            </div>
+                                                            <script>
+                                                                function loadProductDetails(productId) {
+                                                                    // You can use AJAX to fetch data based on the productId
+                                                                    // Here's a simple example using fetch API
+                                                                    fetch('getProductDetails.php?productId=' + productId)
+                                                                        .then(response => response.json())
+                                                                        .then(data => {
+                                                                            // Update the content in the modal body
+                                                                            document.getElementById('productDetailsContainer').innerHTML = data.productDetails;
+                                                                            // Update the modal title with the productId
+                                                                            document.getElementById('editProductDetailsTitle').innerHTML = productId + ' Product Details';
+                                                                        })
+                                                                        .catch(error => console.error('Error:', error));
+                                                                }
+                                                            </script>
+                                                        </div>
+                                                        <!-- </div> -->
+                                                    </div>
+                                                    <div class="modal fade" id="productModal<?= $product['productId'] ?>" tabindex="-1" aria-labelledby="productModalLabel<?= $product['productId'] ?>" aria-hidden="true">
+                                                        <!-- Replace 'productId' with the actual key of your product -->
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="productModalLabel<?= $product['productId'] ?>">Product Details</h5>
+                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Add content for the modal here -->
+                                                                    <img src="<?= isset($product['productImage']) ? $product['productImage'] : 'assets/img/product/product54.jpg'; ?>" alt="Product Image">
+                                                                    <h6>Qty: <?= $product['Quant'] ?> </h6>
+                                                                    <h4><?= $product['productName'] ?></h4>
+                                                                    <h6><?= $product['productPrice'] ?></h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabs_container">
+                            <div class="tab_content active" data-tab="bread">
+                                <div class="row">
+                                    <div class="tabs_container">
+                                        <div class="tab_content active" data-tab="bread">
+
+                                            <div class="row">
+                                                <?php
+                                                // Fetch products from the database (replace this with your actual function)
+                                                $products = fetchProductsFromDatabase3();
+
+                                                // Loop through the products and echo HTML content
+                                                foreach ($products as $product) { ?>
+                                                    <div class="col-lg-3 col-sm-6 d-flex">
+                                                        <!-- <div class="row"> -->
+                                                        <div class="productset flex-fill" data-bs-toggle="modal" data-bs-target="#editProductDetails" onclick="loadProductDetails(<?= $product['productId'] ?>)">
+                                                            <div class="productsetimg">
+                                                                <img src="<?= isset($product['productImage']) ? $product['productImage'] : 'assets/img/product/product54.jpg'; ?>" alt="Product Image">
+                                                                <h6>Qty: <?= $product['Quant'] ?> </h6>
+                                                                <div class="check-product">
+                                                                    <i class="fa fa-check"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="productsetcontent">
+                                                                <h4><?= $product['productName'] ?></h4>
+                                                                <h6><span>₱<?= $product['productPrice'] ?></span></h6>
+                                                            </div>
+                                                            <script>
+                                                                function loadProductDetails(productId) {
+                                                                    // You can use AJAX to fetch data based on the productId
+                                                                    // Here's a simple example using fetch API
+                                                                    fetch('getProductDetails.php?productId=' + productId)
+                                                                        .then(response => response.json())
+                                                                        .then(data => {
+                                                                            // Update the content in the modal body
+                                                                            document.getElementById('productDetailsContainer').innerHTML = data.productDetails;
+                                                                            // Update the modal title with the productId
+                                                                            document.getElementById('editProductDetailsTitle').innerHTML = productId + ' Product Details';
+                                                                        })
+                                                                        .catch(error => console.error('Error:', error));
+                                                                }
+                                                            </script>
+                                                        </div>
+                                                        <!-- </div> -->
+                                                    </div>
+                                                    <div class="modal fade" id="productModal<?= $product['productId'] ?>" tabindex="-1" aria-labelledby="productModalLabel<?= $product['productId'] ?>" aria-hidden="true">
+                                                        <!-- Replace 'productId' with the actual key of your product -->
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="productModalLabel<?= $product['productId'] ?>">Product Details</h5>
+                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Add content for the modal here -->
+                                                                    <img src="<?= isset($product['productImage']) ? $product['productImage'] : 'assets/img/product/product54.jpg'; ?>" alt="Product Image">
+                                                                    <h6>Qty: <?= $product['Quant'] ?> </h6>
+                                                                    <h4><?= $product['productName'] ?></h4>
+                                                                    <h6><?= $product['productPrice'] ?></h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabs_container">
+                            <div class="tab_content active" data-tab="desserts">
+                                <div class="row">
+                                    <div class="tabs_container">
+                                        <div class="tab_content active" data-tab="desserts">
+
+                                            <div class="row">
+                                                <?php
+                                                // Fetch products from the database (replace this with your actual function)
+                                                $products = fetchProductsFromDatabase4();
+
+                                                // Loop through the products and echo HTML content
+                                                foreach ($products as $product) { ?>
+                                                    <div class="col-lg-3 col-sm-6 d-flex">
+                                                        <!-- <div class="row"> -->
+                                                        <div class="productset flex-fill" data-bs-toggle="modal" data-bs-target="#editProductDetails" onclick="loadProductDetails(<?= $product['productId'] ?>)">
+                                                            <div class="productsetimg">
+                                                                <img src="<?= isset($product['productImage']) ? $product['productImage'] : 'assets/img/product/product54.jpg'; ?>" alt="Product Image">
+                                                                <h6>Qty: <?= $product['Quant'] ?> </h6>
+                                                                <div class="check-product">
+                                                                    <i class="fa fa-check"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="productsetcontent">
+                                                                <h4><?= $product['productName'] ?></h4>
+                                                                <h6><span>₱<?= $product['productPrice'] ?></span></h6>
+                                                            </div>
+                                                            <script>
+                                                                function loadProductDetails(productId) {
+                                                                    // You can use AJAX to fetch data based on the productId
+                                                                    // Here's a simple example using fetch API
+                                                                    fetch('getProductDetails.php?productId=' + productId)
+                                                                        .then(response => response.json())
+                                                                        .then(data => {
+                                                                            // Update the content in the modal body
+                                                                            document.getElementById('productDetailsContainer').innerHTML = data.productDetails;
+                                                                            // Update the modal title with the productId
+                                                                            document.getElementById('editProductDetailsTitle').innerHTML = productId + ' Product Details';
+                                                                        })
+                                                                        .catch(error => console.error('Error:', error));
+                                                                }
+                                                            </script>
+                                                        </div>
+                                                        <!-- </div> -->
+                                                    </div>
+                                                    <div class="modal fade" id="productModal<?= $product['productId'] ?>" tabindex="-1" aria-labelledby="productModalLabel<?= $product['productId'] ?>" aria-hidden="true">
+                                                        <!-- Replace 'productId' with the actual key of your product -->
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="productModalLabel<?= $product['productId'] ?>">Product Details</h5>
+                                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <!-- Add content for the modal here -->
+                                                                    <img src="<?= isset($product['productImage']) ? $product['productImage'] : 'assets/img/product/product54.jpg'; ?>" alt="Product Image">
+                                                                    <h6>Qty: <?= $product['Quant'] ?> </h6>
+                                                                    <h4><?= $product['productName'] ?></h4>
+                                                                    <h6><?= $product['productPrice'] ?></h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
